@@ -1,0 +1,209 @@
+/* ============================================================
+   SALIQ AI — Color Themes
+   Each theme overrides the design-system variables, recoloring
+   every page at once. Applied via <body data-theme="...">.
+   The default (Emerald green) lives in styles.css :root.
+   ============================================================ */
+
+/* ── Midnight (black & silver) ─────────────────────────────── */
+body[data-theme="black"] {
+  --accent-rgb: 154, 154, 154;
+  --accent-deep-rgb: 70, 70, 70;
+  --border-rgb: 130, 130, 130;
+  --bg-rgb: 5, 5, 6;
+  --surface-rgb: 18, 18, 20;
+
+  --clr-bg:           #050506;
+  --clr-bg-2:         #0b0b0d;
+  --clr-surface:      #121214;
+  --clr-surface-2:    #1a1a1d;
+
+  --clr-green-900:    #1a1a1a;
+  --clr-green-800:    #262626;
+  --clr-green-700:    #4a4a4a;
+  --clr-green-600:    #6b6b6b;
+  --clr-green-500:    #9a9a9a;
+  --clr-green-400:    #c4c4c4;
+  --clr-green-300:    #e2e2e2;
+  --clr-green-200:    #efefef;
+  --clr-green-100:    #f7f7f7;
+
+  --clr-text-primary:   #f0f0f0;
+  --clr-text-secondary: #a8a8a8;
+  --clr-text-muted:     #5c5c5c;
+}
+
+/* ── Ocean (deep blue) ─────────────────────────────────────── */
+body[data-theme="blue"] {
+  --accent-rgb: 63, 159, 240;
+  --accent-deep-rgb: 20, 71, 110;
+  --border-rgb: 80, 130, 180;
+  --bg-rgb: 6, 11, 18;
+  --surface-rgb: 14, 26, 40;
+
+  --clr-bg:           #060b12;
+  --clr-bg-2:         #0a1420;
+  --clr-surface:      #0e1a28;
+  --clr-surface-2:    #142333;
+
+  --clr-green-900:    #0a2038;
+  --clr-green-800:    #0e3050;
+  --clr-green-700:    #14476e;
+  --clr-green-600:    #1a5f96;
+  --clr-green-500:    #2380c8;
+  --clr-green-400:    #3f9ff0;
+  --clr-green-300:    #6fbaff;
+  --clr-green-200:    #a5d4ff;
+  --clr-green-100:    #d6ecff;
+
+  --clr-text-primary:   #e9f2fb;
+  --clr-text-secondary: #8fa9c4;
+  --clr-text-muted:     #4d6480;
+}
+
+/* ── Desert Gold (warm amber) ──────────────────────────────── */
+body[data-theme="gold"] {
+  --accent-rgb: 224, 191, 106;
+  --accent-deep-rgb: 110, 86, 32;
+  --border-rgb: 180, 150, 80;
+  --bg-rgb: 16, 12, 5;
+  --surface-rgb: 28, 22, 13;
+
+  --clr-bg:           #100c05;
+  --clr-bg-2:         #17110a;
+  --clr-surface:      #1c160d;
+  --clr-surface-2:    #241d12;
+
+  --clr-green-900:    #2e2410;
+  --clr-green-800:    #453614;
+  --clr-green-700:    #6e5620;
+  --clr-green-600:    #96762c;
+  --clr-green-500:    #c9a84c;
+  --clr-green-400:    #e0bf6a;
+  --clr-green-300:    #f0d48a;
+  --clr-green-200:    #f7e5b2;
+  --clr-green-100:    #fbf2d8;
+
+  --clr-text-primary:   #f7f1e3;
+  --clr-text-secondary: #c4b28f;
+  --clr-text-muted:     #80714d;
+}
+
+/* ── Amethyst (violet) ─────────────────────────────────────── */
+body[data-theme="purple"] {
+  --accent-rgb: 154, 99, 245;
+  --accent-deep-rgb: 72, 33, 120;
+  --border-rgb: 130, 90, 200;
+  --bg-rgb: 11, 7, 18;
+  --surface-rgb: 23, 15, 36;
+
+  --clr-bg:           #0b0712;
+  --clr-bg-2:         #120b1d;
+  --clr-surface:      #170f24;
+  --clr-surface-2:    #1f1530;
+
+  --clr-green-900:    #23103e;
+  --clr-green-800:    #321757;
+  --clr-green-700:    #482178;
+  --clr-green-600:    #5f2ba0;
+  --clr-green-500:    #7c3aed;
+  --clr-green-400:    #9a63f5;
+  --clr-green-300:    #b78cfa;
+  --clr-green-200:    #d3b6fc;
+  --clr-green-100:    #e9dbfe;
+
+  --clr-text-primary:   #f2ecfb;
+  --clr-text-secondary: #a894c4;
+  --clr-text-muted:     #64508a;
+}
+
+/* The score-ring gradient (SVG) follows the theme accent */
+#scoreGrad stop:first-child { stop-color: var(--clr-green-500); }
+#scoreGrad stop:last-child  { stop-color: var(--clr-green-300); }
+
+/* ── Theme picker (settings page) ──────────────────────────── */
+.theme-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.theme-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  min-width: 96px;
+  padding: 14px 18px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-md);
+  font-family: var(--font-sans);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.theme-option:hover {
+  border-color: var(--clr-border-light);
+  transform: translateY(-2px);
+}
+
+.theme-option.active {
+  border-color: var(--clr-green-400);
+  box-shadow: 0 0 0 2px rgba(var(--accent-rgb), 0.25);
+}
+
+.theme-swatch {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+}
+
+.theme-name {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--clr-text-secondary);
+}
+
+/* SVG language flags (emoji flags don't render on Windows) */
+.lang-flag-svg {
+  width: 46px;
+  height: 28px;
+  border-radius: 5px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+.lang-flag-svg svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+#lang-grid .theme-option {
+  flex: 1;
+  min-width: 110px;
+}
+
+.flag-mini {
+  display: inline-block;
+  width: 21px;
+  height: 12px;
+  border-radius: 2px;
+  overflow: hidden;
+  vertical-align: -2px;
+  margin-right: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.flag-mini svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.theme-option.active .theme-name {
+  color: var(--clr-text-primary);
+}

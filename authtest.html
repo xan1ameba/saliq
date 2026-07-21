@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Saliq AI — Sign-in Diagnostic</title>
+  <style>
+    body { background: #0b120d; color: #e8efe9; font-family: Segoe UI, sans-serif; max-width: 720px; margin: 40px auto; padding: 0 20px; }
+    h1 { font-size: 1.3rem; }
+    #status { padding: 16px 20px; border-radius: 12px; font-size: 1.1rem; font-weight: 700; margin: 20px 0; }
+    #status.ok  { background: rgba(39,166,78,.15); border: 1px solid rgba(39,166,78,.5); color: #68de8e; }
+    #status.bad { background: rgba(224,82,82,.12); border: 1px solid rgba(224,82,82,.45); color: #ff9c9c; }
+    pre { background: #101a13; border: 1px solid #223528; border-radius: 12px; padding: 16px; font-size: .85rem; white-space: pre-wrap; word-break: break-all; line-height: 1.7; }
+    button, a.btn { display: inline-block; margin: 6px 8px 6px 0; padding: 12px 20px; border-radius: 10px; border: none; cursor: pointer; font-size: .95rem; font-weight: 600; text-decoration: none; }
+    #login  { background: #27a64e; color: #fff; }
+    #logout { background: #2a3a2f; color: #cfe4d5; }
+    a.btn   { background: #1a2a1f; color: #9fd8ae; border: 1px solid #2c4a35; }
+  </style>
+</head>
+<body>
+  <h1>🔍 Saliq AI — Sign-in Diagnostic</h1>
+  <div id="status">Checking...</div>
+  <pre id="details"></pre>
+  <button id="login">Sign in with Google</button>
+  <button id="logout">Sign out</button>
+  <a class="btn" href="/">→ Open Saliq AI</a>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script>
+    const $ = (id) => document.getElementById(id);
+    const lines = [];
+
+    const safeUrl = location.href
+      .replace(/access_token=[^&]+/, 'access_token=<received, hidden>')
+      .replace(/refresh_token=[^&]+/, 'refresh_token=<received, hidden>');
+    lines.push('Page address:  ' + safeUrl);
+
+    const hash  = new URLSearchParams(location.hash.slice(1));
+    const query = new URLSearchParams(location.search);
+    lines.push('Login tokens in URL:  ' + (hash.get('access_token') ? 'YES' : (query.get('code') ? 'YES (code)' : 'NO')));
+
+    const err = hash.get('error_description') || query.get('error_description') || hash.get('error') || query.get('error');
+    if (err) lines.push('ERROR sent back by server:  ' + err);
+
+    const sbKeys = Object.keys(localStorage).filter(k => k.startsWith('sb-'));
+    lines.push('Saved session in this browser:  ' + (sbKeys.length ? 'found (' + sbKeys.join(', ') + ')' : 'none'));
+
+    async function refresh() {
+      const { data: { session }, error } = await supabaseClient.auth.getSession();
+      if (session) {
+        $('status').innerText = '✅ SIGNED IN as ' + (session.user.email || session.user.id);
+        $('status').className = 'ok';
+      } else {
+        $('status').innerText = '❌ NOT signed in' + (error ? ' — ' + error.message : '');
+        $('status').className = 'bad';
+      }
+      $('details').innerText = lines.join('\n');
+    }
+
+    supabaseClient.auth.onAuthStateChange((ev) => {
+      lines.push('Auth event:  ' + ev + '  @ ' + new Date().toLocaleTimeString());
+      refresh();
+    });
+    refresh();
+
+    $('login').onclick = async () => {
+      const { error } = await supabaseClient.auth.signInWithOAuth({
+        provider: 'google',
+        options: { redirectTo: location.origin + '/authtest.html' }
+      });
+      if (error) { lines.push('Failed to start sign-in:  ' + error.message); refresh(); }
+    };
+
+    $('logout').onclick = async () => {
+      await supabaseClient.auth.signOut();
+      location.href = location.pathname;
+    };
+  </script>
+</body>
+</html>

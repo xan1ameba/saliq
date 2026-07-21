@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Saliq AI - Quran Recitation Coach</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="auth.css">
+  <link rel="stylesheet" href="dashboard.css">
+  <link rel="stylesheet" href="themes.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <script>
+    // Apply the saved theme before anything renders (prevents color flash)
+    (function () {
+      var t = localStorage.getItem('saliq_theme');
+      if (t) document.body.dataset.theme = t;
+    })();
+  </script>
+
+  <!-- Geometric Background -->
+  <div class="geo-bg"></div>
+
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="container navbar__inner">
+      <div class="navbar__logo">
+        <div class="logo-icon"><i class="fa-solid fa-microphone-lines"></i></div>
+        <div class="logo-text">Saliq<span>.AI</span></div>
+      </div>
+      <div class="navbar__nav">
+        <a href="#home">Home</a>
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How it Works</a>
+      </div>
+      <div class="navbar__actions">
+        <button class="btn-secondary" id="btn-signin-nav">Sign In</button>
+        <div class="nav-profile" id="nav-profile">
+          <div class="profile-avatar" id="profile-avatar">A</div>
+          <span class="profile-email" id="profile-email">user@example.com</span>
+          <button class="btn-nav-settings" id="btn-settings-nav" title="Settings"><i class="fa-solid fa-gear"></i></button>
+          <button class="btn-signout" id="btn-signout">Sign Out</button>
+        </div>
+        <button class="btn-nav" id="btn-start-demo">Dashboard</button>
+        <div class="hamburger" id="hamburger">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Nav -->
+  <div class="mobile-nav" id="mobile-nav">
+    <button class="mobile-nav-close" id="mobile-nav-close"><i class="fa-solid fa-xmark"></i></button>
+    <a href="#home" class="mobile-link">Home</a>
+    <a href="#features" class="mobile-link">Features</a>
+    <a href="#how-it-works" class="mobile-link">How it Works</a>
+    <a href="#architecture" class="mobile-link">Architecture</a>
+    <button class="btn-primary" style="margin-top: 20px;">Dashboard</button>
+  </div>
+
+  <!-- ==================== Landing Page ==================== -->
+  <div id="landing-page" class="page active">
+    
+    <!-- Hero Section -->
+    <section id="home" class="section">
+      <div class="container hero__inner">
+        <div class="hero__content">
+          <h1 class="hero__title">Perfect Your <br><span class="gradient-text">Tajweed</span> with AI</h1>
+          <p class="hero__subtitle">Saliq AI listens to your recitation, detects mistakes in real-time, and guides you to the correct pronunciation in Russian and Kazakh.</p>
+          <div class="hero__cta">
+            <button class="btn-primary" id="hero-try-demo">
+              Start Reciting <i class="fa-solid fa-arrow-right"></i>
+            </button>
+            <button class="btn-secondary">
+              <i class="fa-solid fa-play"></i> Watch Video
+            </button>
+          </div>
+          <div class="hero__stats">
+            <div>
+              <span class="hero__stat-num">98%</span>
+              <span class="hero__stat-label">Accuracy</span>
+            </div>
+            <div>
+              <span class="hero__stat-num">114</span>
+              <span class="hero__stat-label">Surahs</span>
+            </div>
+            <div>
+              <span class="hero__stat-num">2</span>
+              <span class="hero__stat-label">Languages</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero__visual">
+          <div class="hero__bg-ring"></div>
+          <div class="hero-card">
+            <div class="hero-card__header">
+              <span class="hero-card__title">Real-time Analysis</span>
+              <div class="status-pill">
+                <span class="status-dot"></span> Listening
+              </div>
+            </div>
+            <div class="hero-card__arabic">
+              الْحَمْدُ لِلَّهِ رَبِّ <span class="mistake-word">العالمين</span>
+            </div>
+            <div class="score-bar">
+              <div class="score-bar__header">
+                <span class="score-label">Tajweed Score</span>
+                <span class="score-value">87%</span>
+              </div>
+              <div class="score-track">
+                <div class="score-fill"></div>
+              </div>
+            </div>
+            <div class="mistake-tags">
+              <span class="mistake-tag">Ghunnah</span>
+              <span class="mistake-tag">Makhraj</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="section">
+      <div class="container">
+        <div class="features__header">
+          <span class="section-label">Why Saliq AI?</span>
+          <h2 class="section-title">Your Personal <span class="gradient-text">Quran Coach</span></h2>
+          <p class="section-subtitle">Experience a revolutionary way to learn and perfect your Quran recitation with state-of-the-art voice recognition technology tailored for the Russian and Kazakh speaking audience.</p>
+        </div>
+        <div class="features__grid">
+          <div class="feature-card">
+            <div class="feature-icon"><i class="fa-solid fa-ear-listen" style="color: var(--clr-green-400);"></i></div>
+            <h3>Pinpoint Accuracy</h3>
+            <p>Our AI accurately identifies mispronunciations down to the specific letter and tajweed rule.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon"><i class="fa-solid fa-language" style="color: var(--clr-gold-400);"></i></div>
+            <h3>Bilingual Feedback</h3>
+            <p>Get clear, detailed explanations on how to correct your mistakes in both Russian and Kazakh.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon"><i class="fa-solid fa-chart-line" style="color: var(--clr-green-300);"></i></div>
+            <h3>Track Progress</h3>
+            <p>Monitor your improvement over time with detailed analytics, scores, and achievement badges.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="section">
+      <div class="container how__inner">
+        <div class="how__visual">
+          <div class="how-preview">
+            <div class="how-preview__step visible" id="preview-step-1">
+              <div style="text-align: center; padding: 20px 0;">
+                <i class="fa-solid fa-book-quran" style="font-size: 3rem; color: var(--clr-gold-400); margin-bottom: 16px;"></i>
+                <h4 style="font-size: 1.1rem; margin-bottom: 8px;">Al-Fatihah</h4>
+                <p style="font-size: 0.85rem; color: var(--clr-text-secondary);">Ayah 1-7</p>
+              </div>
+            </div>
+            <div class="how-preview__step" id="preview-step-2">
+              <div class="mic-container">
+                <div class="mic-outer recording">
+                  <div class="mic-inner"><i class="fa-solid fa-microphone"></i></div>
+                </div>
+                <div class="waveform">
+                  <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
+                  <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
+                  <div class="wave-bar"></div><div class="wave-bar"></div>
+                </div>
+              </div>
+            </div>
+            <div class="how-preview__step" id="preview-step-3">
+              <div style="text-align: center; padding: 10px 0;">
+                <div style="font-size: 2.5rem; font-weight: 900; color: var(--clr-green-300); margin-bottom: 5px;">92%</div>
+                <p style="font-size: 0.8rem; color: var(--clr-text-secondary); margin-bottom: 15px;">Excellent pronunciation!</p>
+                <div style="padding: 10px; background: rgba(224,82,82,0.1); border-radius: 8px; border: 1px solid rgba(224,82,82,0.2); text-align: left;">
+                  <span style="font-size: 0.7rem; color: var(--clr-red-300); font-weight: bold; text-transform: uppercase;">1 Mistake Found</span>
+                  <div style="font-family: var(--font-arabic); font-size: 1.2rem; text-align: right; margin-top: 5px; color: #fff;">الرَّحْمَٰنِ</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <span class="section-label">Simple Process</span>
+          <h2 class="section-title">How It Works</h2>
+          <div class="how__steps">
+            <div class="step-item active" data-step="1">
+              <div class="step-num">1</div>
+              <div class="step-content">
+                <h4>Select Ayah</h4>
+                <p>Choose the Surah and Ayah you want to practice from the complete Quran.</p>
+              </div>
+            </div>
+            <div class="step-item" data-step="2">
+              <div class="step-num">2</div>
+              <div class="step-content">
+                <h4>Recite Aloud</h4>
+                <p>Press the microphone button and recite clearly into your device.</p>
+              </div>
+            </div>
+            <div class="step-item" data-step="3">
+              <div class="step-num">3</div>
+              <div class="step-content">
+                <h4>Get Instant Feedback</h4>
+                <p>Receive immediate analysis highlighting your mistakes and explaining how to fix them.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-inner">
+          <h2>Ready to improve your recitation?</h2>
+          <p>Try the demo now and experience the future of Quran learning.</p>
+          <div class="cta-btns">
+            <button class="btn-primary" id="cta-try-demo">Dashboard <i class="fa-solid fa-arrow-right"></i></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container footer__inner">
+        <div class="navbar__logo">
+          <div class="logo-icon" style="width: 24px; height: 24px; font-size: 0.8rem;"><i class="fa-solid fa-microphone-lines"></i></div>
+          <div class="logo-text" style="font-size: 1rem;">Saliq<span>.AI</span></div>
+        </div>
+        <div class="footer__copy">© 2026 Saliq AI. All rights reserved.</div>
+        <div class="footer__links">
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+          <a href="#">Contact</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ==================== Dashboard Page ==================== -->
+  <div id="dashboard-page" class="page">
+    <div class="container">
+
+      <div class="app-header">
+        <div class="app-header__inner">
+          <div>
+            <h1 class="app-title">Assalamu alaikum, <span id="dash-name">Reciter</span> 👋</h1>
+            <p class="app-subtitle" id="dash-subtitle">Here is your Quran reading journey so far.</p>
+          </div>
+          <div class="app-header-actions">
+            <button class="btn-primary" id="btn-start-reading">
+              <i class="fa-solid fa-book-quran"></i> Start Reading Quran
+            </button>
+            <button class="btn-secondary" id="btn-settings-dash" title="Settings">
+              <i class="fa-solid fa-gear"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Overall Quran completion -->
+      <div class="quran-progress-card">
+        <div class="qp-top">
+          <div>
+            <h3 class="qp-title">Quran Completion</h3>
+            <p class="qp-detail"><span id="qp-ayahs">0</span> of 6,236 ayahs read • <span id="qp-surahs">0</span> of 114 surahs completed</p>
+          </div>
+          <div class="qp-percent" id="qp-percent">0%</div>
+        </div>
+        <div class="qp-bar"><div class="qp-fill" id="qp-fill"></div></div>
+        <p class="qp-hint" id="qp-hint">Every ayah counts — start with a short surah today.</p>
+      </div>
+
+      <!-- Stats -->
+      <div class="dashboard-row dashboard-row--4">
+        <div class="dash-card">
+          <div class="dash-card__icon" style="color: var(--clr-green-300);"><i class="fa-solid fa-book-open"></i></div>
+          <div class="dash-card__val" id="stat-ayahs">0</div>
+          <div class="dash-card__label">Ayahs Read</div>
+          <div class="dash-card__trend" style="color: var(--clr-text-muted);">of 6,236 in the Quran</div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-card__icon" style="color: var(--clr-green-400);"><i class="fa-solid fa-book-quran"></i></div>
+          <div class="dash-card__val" id="stat-surahs">0</div>
+          <div class="dash-card__label">Surahs Completed</div>
+          <div class="dash-card__trend" style="color: var(--clr-text-muted);">of 114 surahs</div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-card__icon" style="color: var(--clr-gold-400);"><i class="fa-solid fa-fire"></i></div>
+          <div class="dash-card__val" id="stat-streak">0</div>
+          <div class="dash-card__label">Day Streak</div>
+          <div class="dash-card__trend" id="stat-streak-trend">Start today!</div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-card__icon" style="color: var(--clr-green-300);"><i class="fa-solid fa-chart-pie"></i></div>
+          <div class="dash-card__val" id="stat-score">—</div>
+          <div class="dash-card__label">Average Score</div>
+          <div class="dash-card__trend" id="stat-score-trend">No recitations yet</div>
+        </div>
+      </div>
+
+      <!-- Sessions + Achievements -->
+      <div class="dashboard-columns">
+        <div class="sessions-section">
+          <h3 class="sessions-title">Recent Sessions</h3>
+          <div class="session-list" id="dash-sessions"></div>
+        </div>
+        <div class="achievements-section">
+          <h3 class="sessions-title">Achievements</h3>
+          <div class="achievements-grid" id="dash-achievements"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==================== Choose Passage Page ==================== -->
+  <div id="select-page" class="page">
+    <div class="container">
+
+      <div class="app-header">
+        <div class="app-header__inner">
+          <div>
+            <h1 class="app-title">Choose a Passage</h1>
+            <p class="app-subtitle">Pick a surah, juz or mushaf page.</p>
+          </div>
+          <button class="btn-secondary" id="btn-select-back">
+            <i class="fa-solid fa-arrow-left"></i> Dashboard
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 1: browse surahs / juz -->
+      <div id="select-browse">
+        <div class="select-tabs">
+          <button type="button" class="select-tab active" id="tab-surahs"><i class="fa-solid fa-book-quran"></i> Surahs</button>
+          <button type="button" class="select-tab" id="tab-juz"><i class="fa-solid fa-layer-group"></i> Juz</button>
+          <button type="button" class="select-tab" id="tab-pages"><i class="fa-solid fa-file-lines"></i> Pages</button>
+          <input type="text" class="search-input select-search" id="select-search" placeholder="Search surah or number...">
+        </div>
+        <div class="select-grid" id="select-grid">
+          <!-- rendered by script.js -->
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==================== Settings Page ==================== -->
+  <div id="settings-page" class="page">
+    <div class="container">
+
+      <div class="app-header">
+        <div class="app-header__inner">
+          <div>
+            <h1 class="app-title">Settings</h1>
+          </div>
+          <button class="btn-secondary" id="btn-settings-back">
+            <i class="fa-solid fa-arrow-left"></i> Back
+          </button>
+        </div>
+      </div>
+
+      <div class="settings-grid">
+
+      <div class="settings-card">
+        <h3 class="settings-card__title"><i class="fa-solid fa-book-open"></i> Display</h3>
+
+        <div class="setting-row">
+          <div class="setting-name">Arabic Text</div>
+          <label class="switch">
+            <input type="checkbox" id="set-arabic" checked>
+            <span class="switch-slider"></span>
+          </label>
+        </div>
+
+        <div class="setting-row">
+          <div class="setting-name">Transcription</div>
+          <label class="switch">
+            <input type="checkbox" id="set-translit" checked>
+            <span class="switch-slider"></span>
+          </label>
+        </div>
+
+        <div class="setting-row">
+          <div class="setting-name">Translation</div>
+          <label class="switch">
+            <input type="checkbox" id="set-translation" checked>
+            <span class="switch-slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="settings-card">
+        <h3 class="settings-card__title"><i class="fa-solid fa-language"></i> Language</h3>
+
+        <div class="theme-grid" id="lang-grid">
+          <button type="button" class="theme-option" data-lang="en">
+            <span class="lang-flag-svg">
+              <svg viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg">
+                <rect width="60" height="30" fill="#012169"/>
+                <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/>
+                <path d="M0,0 L60,30 M60,0 L0,30" stroke="#C8102E" stroke-width="3"/>
+                <path d="M30,0 V30 M0,15 H60" stroke="#fff" stroke-width="10"/>
+                <path d="M30,0 V30 M0,15 H60" stroke="#C8102E" stroke-width="6"/>
+              </svg>
+            </span>
+            <span class="theme-name">English</span>
+          </button>
+          <button type="button" class="theme-option active" data-lang="ru">
+            <span class="lang-flag-svg">
+              <svg viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg">
+                <rect width="60" height="10" fill="#ffffff"/>
+                <rect y="10" width="60" height="10" fill="#0039A6"/>
+                <rect y="20" width="60" height="10" fill="#D52B1E"/>
+              </svg>
+            </span>
+            <span class="theme-name">Русский</span>
+          </button>
+          <button type="button" class="theme-option" data-lang="kk">
+            <span class="lang-flag-svg">
+              <svg viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg">
+                <rect width="60" height="30" fill="#00AFCA"/>
+                <rect width="5" height="30" fill="#FEC50C"/>
+                <circle cx="32" cy="15" r="6" fill="#FEC50C"/>
+                <path d="M32,5 V2 M32,25 V28 M22,15 H19 M42,15 H45 M25,8 L23,6 M39,8 L41,6 M25,22 L23,24 M39,22 L41,24" stroke="#FEC50C" stroke-width="1.6"/>
+              </svg>
+            </span>
+            <span class="theme-name">Қазақша</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="settings-card settings-card--wide">
+        <h3 class="settings-card__title"><i class="fa-solid fa-palette"></i> Theme</h3>
+
+        <div class="theme-grid" id="theme-grid">
+          <button type="button" class="theme-option active" data-theme="green">
+            <span class="theme-swatch" style="background: linear-gradient(135deg, #0d1710 50%, #27a64e 50%);"></span>
+            <span class="theme-name">Emerald</span>
+          </button>
+          <button type="button" class="theme-option" data-theme="black">
+            <span class="theme-swatch" style="background: linear-gradient(135deg, #0b0b0d 50%, #9a9a9a 50%);"></span>
+            <span class="theme-name">Midnight</span>
+          </button>
+          <button type="button" class="theme-option" data-theme="blue">
+            <span class="theme-swatch" style="background: linear-gradient(135deg, #0a1420 50%, #2380c8 50%);"></span>
+            <span class="theme-name">Ocean</span>
+          </button>
+          <button type="button" class="theme-option" data-theme="gold">
+            <span class="theme-swatch" style="background: linear-gradient(135deg, #17110a 50%, #e0bf6a 50%);"></span>
+            <span class="theme-name">Desert Gold</span>
+          </button>
+          <button type="button" class="theme-option" data-theme="purple">
+            <span class="theme-swatch" style="background: linear-gradient(135deg, #120b1d 50%, #7c3aed 50%);"></span>
+            <span class="theme-name">Amethyst</span>
+          </button>
+        </div>
+      </div>
+
+      </div><!-- /settings-grid -->
+
+    </div>
+  </div>
+
+  <!-- ==================== App Page (Demo) ==================== -->
+  <div id="app-page" class="page">
+    <div class="container">
+      
+      <!-- App Header -->
+      <div class="app-header">
+        <div class="app-header__inner">
+          <div>
+            <h1 class="app-title">Practice Studio</h1>
+            <p class="app-subtitle">Select a passage and start reciting.</p>
+          </div>
+          <div class="app-header-actions">
+            <button class="btn-secondary" id="btn-change-passage">
+              <i class="fa-solid fa-book-quran"></i> Change Passage
+            </button>
+            <button class="btn-secondary" id="btn-back-dashboard">
+              <i class="fa-solid fa-chart-pie"></i> My Dashboard
+            </button>
+            <button class="btn-secondary" id="btn-settings-app" title="Settings">
+              <i class="fa-solid fa-gear"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Progress Steps -->
+      <div class="progress-steps" id="app-steps">
+        <div class="progress-step current" data-step="1">
+          <div class="progress-step__num">1</div>
+          <div class="progress-step__label">Select Passage</div>
+        </div>
+        <div class="progress-connector"></div>
+        <div class="progress-step" data-step="2">
+          <div class="progress-step__num">2</div>
+          <div class="progress-step__label">Recite</div>
+        </div>
+        <div class="progress-connector"></div>
+        <div class="progress-step" data-step="3">
+          <div class="progress-step__num">3</div>
+          <div class="progress-step__label">Feedback</div>
+        </div>
+      </div>
+
+      <!-- Main Layout -->
+      <div class="app-layout">
+        
+        <!-- Main Content Area -->
+        <main class="recitation-panel">
+          
+          <!-- Quran Text Display -->
+          <div class="quran-text-card">
+            <div class="quran-text-card__header">
+              <div class="ayah-info" id="passage-label">Surah <strong>Al-Fatihah</strong> (Ayah 1-7)</div>
+              <div class="tajweed-legend">
+                <div class="tajweed-item"><div class="tajweed-dot" style="background: var(--clr-green-400);"></div> Correct</div>
+                <div class="tajweed-item"><div class="tajweed-dot" style="background: var(--clr-red-400);"></div> Mistake</div>
+              </div>
+            </div>
+            
+            <div class="bismillah" id="bismillah-display">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+            <div class="verse-list" id="quran-text-display">
+              <div class="session-empty">Loading Surah Al-Fatihah...</div>
+            </div>
+
+            <!-- Mushaf page navigation (shown when reading by pages) -->
+            <div class="page-nav" id="page-nav" style="display: none;">
+              <button class="btn-secondary" id="btn-page-prev"><i class="fa-solid fa-chevron-left"></i> Back</button>
+              <span class="page-nav__label" id="page-nav-label">Page 1 / 604</span>
+              <button class="btn-secondary" id="btn-page-next">Next <i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+          </div>
+
+          <!-- Microphone Panel -->
+          <div class="mic-panel" id="mic-panel">
+            <div>
+              <h3 class="mic-panel__title" id="mic-status-title">Ready to Recite</h3>
+              <p class="mic-panel__subtitle" id="mic-status-subtitle">Press the button below and start speaking clearly.</p>
+            </div>
+            
+            <button class="mic-btn" id="btn-record">
+              <i class="fa-solid fa-microphone"></i>
+            </button>
+            
+            <div class="recording-timer" id="recording-timer">00:00</div>
+            
+            <div class="audio-waveform" id="audio-waveform">
+              <!-- Dynamically generated bars via JS -->
+            </div>
+
+            <div class="mic-instructions">
+              <span class="mic-tip"><i class="fa-solid fa-volume-high"></i> Speak clearly</span>
+              <span class="mic-tip"><i class="fa-solid fa-wind"></i> Minimize background noise</span>
+            </div>
+          </div>
+
+          <!-- AI Feedback Panel (Hidden initially) -->
+          <div class="feedback-panel" id="feedback-panel">
+            <div class="feedback-header">
+              <div>
+                <h3 class="feedback-title">Recitation Analysis</h3>
+                <div class="feedback-meta">
+                  <span style="font-size: 0.8rem; color: var(--clr-text-secondary);" id="feedback-passage-label">Surah Al-Fatihah, Ayah 1-7</span>
+                  <span class="badge">Completed</span>
+                </div>
+              </div>
+              <div class="score-display">
+                <div class="score-ring">
+                  <svg>
+                    <circle class="score-ring-bg" cx="32" cy="32" r="25"></circle>
+                    <circle class="score-ring-fill" cx="32" cy="32" r="25"></circle>
+                    <defs>
+                      <linearGradient id="scoreGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#27a64e" />
+                        <stop offset="100%" stop-color="#68de8e" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                  <div class="score-ring__label" id="score-ring-label">87%</div>
+                </div>
+                <div>
+                  <div class="score-label-sm">Overall Score</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="feedback-scores">
+              <div class="score-metric green">
+                <span class="score-metric__val">92%</span>
+                <span class="score-metric__label">Makhraj</span>
+              </div>
+              <div class="score-metric gold">
+                <span class="score-metric__val">84%</span>
+                <span class="score-metric__label">Tajweed Rules</span>
+              </div>
+              <div class="score-metric green">
+                <span class="score-metric__val">95%</span>
+                <span class="score-metric__label">Fluency</span>
+              </div>
+              <div class="score-metric red">
+                <span class="score-metric__val">3</span>
+                <span class="score-metric__label">Mistakes</span>
+              </div>
+            </div>
+
+            <div class="mistakes-list">
+              <div class="mistakes-header">
+                <span class="mistakes-title">Detailed Corrections</span>
+                <span class="mistakes-count">3 Mistakes Found</span>
+              </div>
+
+              <!-- Mistake 1 -->
+              <div class="mistake-card">
+                <div class="mistake-card__header">
+                  <div class="mistake-card__meta">
+                    <span class="mistake-num">Mistake #1</span>
+                    <span class="mistake-word">الرَّحْمَٰنِ</span>
+                    <div style="margin-top: 10px;">
+                      <span class="mistake-issue">Insufficient Ghunnah</span>
+                    </div>
+                  </div>
+                  <button class="mistake-audio-btn" data-tooltip="Listen to correct pronunciation">
+                    <i class="fa-solid fa-play"></i>
+                  </button>
+                </div>
+                <div class="mistake-explanations">
+                  <div class="explanation-block lang-en">
+                    <div class="explanation-lang"><span class="flag-mini"><svg viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg"><rect width="60" height="30" fill="#012169"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#C8102E" stroke-width="3"/><path d="M30,0 V30 M0,15 H60" stroke="#fff" stroke-width="10"/><path d="M30,0 V30 M0,15 H60" stroke="#C8102E" stroke-width="6"/></svg></span> English</div>
+                    <p class="explanation-text">The sound here needs a clearer nasal resonance (Ghunnah). Let it hum through the nose and hold it slightly longer.</p>
+                  </div>
+                  <div class="explanation-block lang-ru">
+                    <div class="explanation-lang"><span class="flag-mini"><svg viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg"><rect width="60" height="10" fill="#ffffff"/><rect y="10" width="60" height="10" fill="#0039A6"/><rect y="20" width="60" height="10" fill="#D52B1E"/></svg></span> Russian</div>
+                    <p class="explanation-text">Здесь звук должен иметь более выраженный носовой резонанс (Гунна). Удерживайте звук немного дольше.</p>
+                  </div>
+                  <div class="explanation-block lang-kk">
+                    <div class="explanation-lang"><span class="flag-mini"><svg viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg"><rect width="60" height="30" fill="#00AFCA"/><rect width="5" height="30" fill="#FEC50C"/><circle cx="32" cy="15" r="6" fill="#FEC50C"/><path d="M32,5 V2 M32,25 V28 M22,15 H19 M42,15 H45 M25,8 L23,6 M39,8 L41,6 M25,22 L23,24 M39,22 L41,24" stroke="#FEC50C" stroke-width="1.6"/></svg></span> Kazakh</div>
+                    <p class="explanation-text">Бұл жерде ғунна анық естілуі керек. Дыбысты мұрын арқылы шығарып, сәл ұзағырақ ұстаңыз.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Mistake 2 -->
+              <div class="mistake-card">
+                <div class="mistake-card__header">
+                  <div class="mistake-card__meta">
+                    <span class="mistake-num">Mistake #2</span>
+                    <span class="mistake-word">الصِّرَاطَ</span>
+                    <div style="margin-top: 10px;">
+                      <span class="mistake-issue">Incorrect Makhraj of 'ص'</span>
+                    </div>
+                  </div>
+                  <button class="mistake-audio-btn" data-tooltip="Listen to correct pronunciation">
+                    <i class="fa-solid fa-play"></i>
+                  </button>
+                </div>
+                <div class="mistake-explanations">
+                  <div class="explanation-block lang-en">
+                    <div class="explanation-lang"><span class="flag-mini"><svg viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg"><rect width="60" height="30" fill="#012169"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#C8102E" stroke-width="3"/><path d="M30,0 V30 M0,15 H60" stroke="#fff" stroke-width="10"/><path d="M30,0 V30 M0,15 H60" stroke="#C8102E" stroke-width="6"/></svg></span> English</div>
+                    <p class="explanation-text">The letter Saad (ص) is a heavy letter: raise the back of the tongue toward the soft palate — don't soften it into Seen (س).</p>
+                  </div>
+                  <div class="explanation-block lang-ru">
+                    <div class="explanation-lang"><span class="flag-mini"><svg viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg"><rect width="60" height="10" fill="#ffffff"/><rect y="10" width="60" height="10" fill="#0039A6"/><rect y="20" width="60" height="10" fill="#D52B1E"/></svg></span> Russian</div>
+                    <p class="explanation-text">Буква «Сад» (ص) произносится твердо. Корень языка должен быть приподнят к мягкому нёбу, в отличие от мягкой «Син» (س).</p>
+                  </div>
+                  <div class="explanation-block lang-kk">
+                    <div class="explanation-lang"><span class="flag-mini"><svg viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg"><rect width="60" height="30" fill="#00AFCA"/><rect width="5" height="30" fill="#FEC50C"/><circle cx="32" cy="15" r="6" fill="#FEC50C"/><path d="M32,5 V2 M32,25 V28 M22,15 H19 M42,15 H45 M25,8 L23,6 M39,8 L41,6 M25,22 L23,24 M39,22 L41,24" stroke="#FEC50C" stroke-width="1.6"/></svg></span> Kazakh</div>
+                    <p class="explanation-text">«Сад» (ص) әрпі жуан оқылады. Тілдің түбі жоғары көтерілуі тиіс, жіңішке «Син» (س) әрпімен шатастырмаңыз.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Learning Recommendations -->
+            <div class="recommendations">
+              <h4>Actionable Feedback</h4>
+              <div class="rec-list">
+                <div class="rec-item">Focus on the pronunciation of heavy letters (Tafkheem).</div>
+                <div class="rec-item">Practice the duration of Ghunnah in words with Shaddah on Noon and Meem.</div>
+                <div class="rec-item">Listen to Qari Mishary Rashid Alafasy's recitation of Al-Fatihah to catch the subtle nuances.</div>
+              </div>
+              <button class="btn-secondary" style="margin-top: 20px; width: 100%; justify-content: center;" id="btn-practice-again">Practice Again</button>
+            </div>
+          </div>
+
+        </main>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Analyzing Overlay (Simulated loading state) -->
+  <div class="analyzing-overlay" id="analyzing-overlay">
+    <div class="analyzing-ring"></div>
+    <div style="text-align: center;">
+      <div class="analyzing-text">AI is analyzing your recitation</div>
+      <div class="analyzing-sub">Please wait a moment...</div>
+    </div>
+    <div class="analyzing-steps" id="analyzing-steps">
+      <div class="analyzing-step"><div class="analyzing-step__icon"><i class="fa-solid fa-check"></i></div> Processing audio...</div>
+      <div class="analyzing-step"><div class="analyzing-step__icon"><i class="fa-solid fa-check"></i></div> Mapping to Quranic text...</div>
+      <div class="analyzing-step"><div class="analyzing-step__icon"><i class="fa-solid fa-check"></i></div> Detecting tajweed rules...</div>
+      <div class="analyzing-step"><div class="analyzing-step__icon"><i class="fa-solid fa-check"></i></div> Generating bilingual feedback...</div>
+    </div>
+  </div>
+
+  <!-- Notification Toast -->
+  <div class="toast success" id="toast">
+    <i class="fa-solid fa-circle-check toast-icon"></i>
+    <span id="toast-message">Action completed successfully.</span>
+  </div>
+
+  <!-- Authentication Modal -->
+  <div class="auth-overlay" id="auth-overlay">
+    <div class="auth-modal">
+      <button class="auth-close" id="auth-close"><i class="fa-solid fa-xmark"></i></button>
+
+      <div class="auth-header">
+        <div class="auth-logo"><i class="fa-solid fa-microphone-lines"></i></div>
+        <h3 class="auth-title">Welcome to Saliq AI</h3>
+        <p class="auth-subtitle" id="auth-subtitle">Sign in to save your tajweed progress and unlock personalized coaching.</p>
+      </div>
+
+      <div class="auth-body">
+
+        <!-- ===== Google sign-in view ===== -->
+        <div class="auth-view active" id="view-signin">
+          <button type="button" class="btn-google" id="btn-google-signin">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="20" height="20">
+              <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+              <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+              <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+              <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+            </svg>
+            Continue with Google
+          </button>
+          <p class="auth-note">We'll create your account from your Google profile — then you can add your details.</p>
+        </div>
+
+        <!-- ===== Complete profile view ===== -->
+        <form class="auth-view" id="view-profile" novalidate>
+          <div class="form-group">
+            <label for="profile-name">Full name <span class="req">*</span></label>
+            <input type="text" id="profile-name" placeholder="e.g. Ali Mukhtubayev" autocomplete="name">
+          </div>
+          <div class="form-group">
+            <label for="profile-phone">Phone number <span class="optional">(optional)</span></label>
+            <input type="tel" id="profile-phone" placeholder="+7 777 123 45 67" autocomplete="tel">
+          </div>
+          <div class="form-group">
+            <label for="profile-language">Preferred coaching language</label>
+            <select id="profile-language">
+              <option value="ru">Русский (Russian)</option>
+              <option value="kk">Қазақша (Kazakh)</option>
+              <option value="en">English</option>
+            </select>
+          </div>
+          <button type="submit" class="btn-auth-submit" id="btn-profile-submit">Save &amp; Continue</button>
+        </form>
+
+        <div class="auth-error" id="error-auth">
+          <i class="fa-solid fa-circle-exclamation"></i> <span>Something went wrong</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script src="auth.js"></script>
+  <script src="dashboard.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
